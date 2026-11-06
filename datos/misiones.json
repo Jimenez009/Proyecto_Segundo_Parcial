@@ -1,0 +1,10 @@
+{
+    "id": "MSN-005",
+    "nombre": "Exploración Orbital Gamma",
+    "combustibleInicial": 100,
+    "temperaturaInicial": 25,
+    "energiaInicial": 50,
+    "trayectoriaInicial": 0,
+    "duracionSegundos": 60,
+    "umbralPeligroTemp": 140
+}

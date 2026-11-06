@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission Control - Simulador Espacial</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+    <div class="mission-container">
+        <header class="mission-header">
+            <div class="window-controls">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+            </div>
+            <h1>SIMULADOR INTERACTIVO - MISSION CONTROL</h1>
+        </header>
+
+        <main class="mission-body">
+            <!-- Panel de Telemetría -->
+            <section class="telemetry-panel">
+                <h2>Telemetría en Vivo</h2>
+                <div class="metric">
+                    <label>Combustible: <span id="val-combustible">100</span>%</label>
+                    <progress id="bar-combustible" value="100" max="100"></progress>
+                </div>
+                <div class="metric">
+                    <label>Temperatura: <span id="val-temperatura">25</span> °C</label>
+                    <progress id="bar-temperatura" value="25" max="150"></progress>
+                </div>
+                <div class="metric">
+                    <label>Energía: <span id="val-energia">100</span>%</label>
+                    <progress id="bar-energia" value="100" max="100"></progress>
+                </div>
+                <div class="metric">
+                    <label>Trayectoria: <span id="val-trayectoria">0</span>° Desviación</label>
+                </div>
+                
+                <div class="controls-box">
+                    <button id="btn-lanzar" class="btn">Iniciar Cuenta Regresiva</button>
+                    
+                    <div class="sub-controls grid-2">
+                        <button id="btn-enfriar" class="btn secondary" disabled>❄️ Enfriar Motores</button>
+                        <button id="btn-inyectar" class="btn secondary" disabled>⛽ Inyectar Combustible</button>
+                        <button id="btn-recargar" class="btn secondary" disabled>⚡ Reasignar Energía</button>
+                        <button id="btn-corregir" class="btn secondary" disabled>🎯 Corregir Rumbo</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Visualizador de Misión -->
+            <section class="visual-panel">
+                <div class="rocket-ship" id="ship">▲</div>
+                <div id="status-display" class="status-msg">Esperando secuencia de lanzamiento...</div>
+            </section>
+        </main>
+        
+        <!-- Modal de Resumen Final -->
+        <div id="modal-resumen" class="modal hidden">
+            <div class="modal-content">
+                <h2>Resumen de la Misión</h2>
+                <p id="resumen-texto"></p>
+                <button id="btn-reiniciar" class="btn">Reiniciar Misión</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
