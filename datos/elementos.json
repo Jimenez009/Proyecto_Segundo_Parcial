@@ -1,0 +1,11 @@
+[
+  { "id": "H2O", "formula": "H₂O", "nombre": "Agua", "color": "#5ec8f2" },
+  { "id": "NaCl", "formula": "NaCl", "nombre": "Cloruro de sodio", "color": "#e8eef5" },
+  { "id": "HCl", "formula": "HCl", "nombre": "Ácido clorhídrico", "color": "#f2e35e" },
+  { "id": "CO2", "formula": "CO₂", "nombre": "Dióxido de carbono", "color": "#b8c4d6" },
+  { "id": "NaOH", "formula": "NaOH", "nombre": "Hidróxido de sodio", "color": "#cfe9ff" },
+  { "id": "NaHCO3", "formula": "NaHCO₃", "nombre": "Bicarbonato de sodio", "color": "#f5f1e6" },
+  { "id": "CH3COOH", "formula": "CH₃COOH", "nombre": "Vinagre", "color": "#f5d58a" },
+  { "id": "Aceite", "formula": "Aceite", "nombre": "Aceite vegetal", "color": "#f2c14e" },
+  { "id": "Fenolftaleina", "formula": "C₂₀H₁₄O₄", "nombre": "Fenolftaleína", "color": "#e9d7ff" }
+]

@@ -1,68 +1,152 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mission Control - Simulador Espacial</title>
-    <link rel="stylesheet" href="css/estilos.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laboratorio Virtual</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
-    <div class="mission-container">
-        <header class="mission-header">
-            <div class="window-controls">
-                <span class="dot red"></span>
-                <span class="dot yellow"></span>
-                <span class="dot green"></span>
-            </div>
-            <h1>SIMULADOR INTERACTIVO - MISSION CONTROL</h1>
-        </header>
 
-        <main class="mission-body">
-            <section class="telemetry-panel">
-                <h2>Telemetría en Vivo</h2>
-                <div class="metric">
-                    <label>Combustible: <span id="val-combustible">100</span>%</label>
-                    <progress id="bar-combustible" value="100" max="100"></progress>
-                </div>
-                <div class="metric">
-                    <label>Temperatura: <span id="val-temperatura">25</span> °C</label>
-                    <progress id="bar-temperatura" value="25" max="150"></progress>
-                </div>
-                <div class="metric">
-                    <label>Energía: <span id="val-energia">100</span>%</label>
-                    <progress id="bar-energia" value="100" max="100"></progress>
-                </div>
-                <div class="metric">
-                    <label>Trayectoria: <span id="val-trayectoria">0</span>° Desviación</label>
-                </div>
-                
-                <div class="controls-box">
-                    <button id="btn-lanzar" class="btn">Iniciar Cuenta Regresiva</button>
-                    
-                    <div class="sub-controls grid-2">
-                        <button id="btn-enfriar" class="btn secondary" disabled>❄️ Enfriar Motores</button>
-                        <button id="btn-inyectar" class="btn secondary" disabled>⛽ Inyectar Combustible</button>
-                        <button id="btn-recargar" class="btn secondary" disabled>⚡ Reasignar Energía</button>
-                        <button id="btn-corregir" class="btn secondary" disabled>🎯 Corregir Rumbo</button>
-                    </div>
-                </div>
-            </section>
-
-            <section class="visual-panel">
-                <div class="rocket-ship" id="ship">▲</div>
-                <div id="status-display" class="status-msg">Esperando secuencia de lanzamiento...</div>
-            </section>
-        </main>
-        
-        <div id="modal-resumen" class="modal hidden">
-            <div class="modal-content">
-                <h2>Resumen de la Misión</h2>
-                <p id="resumen-texto"></p>
-                <button id="btn-reiniciar" class="btn">Reiniciar Misión</button>
-            </div>
-        </div>
+  <header class="encabezado">
+    <div class="marca">
+      <div class="marca-numero">6</div>
+      <div>
+        <span class="etiqueta-curso">Programación II · Proyecto 06</span>
+        <h1>Laboratorio Virtual de Experimentos</h1>
+        <p>Combina elementos químicos y observa las reacciones en pantalla.</p>
+      </div>
     </div>
+    <div class="resumen">
+      <span class="chip">Descubiertos <b id="contador">0/0</b></span>
+      <span class="chip" id="estadoCarga">Cargando datos...</span>
+    </div>
+  </header>
 
-    <script src="js/app.js"></script>
+  <main class="contenedor">
+
+    <section class="panel simulador">
+      <div class="ventana-barra">
+        <span class="punto rojo"></span>
+        <span class="punto amarillo"></span>
+        <span class="punto verde"></span>
+        <span class="ventana-titulo">SIMULADOR INTERACTIVO</span>
+        <button class="boton-icono" id="btnReiniciar" title="Vaciar vaso">↻</button>
+      </div>
+
+      <div class="simulador-cuerpo">
+        <div class="estante">
+          <div class="tubos">
+            <div class="tubo"><div class="tubo-liquido"></div></div>
+            <div class="tubo"><div class="tubo-liquido"></div></div>
+            <div class="tubo"><div class="tubo-liquido"></div></div>
+          </div>
+          <div class="estante-base"></div>
+          <small>Últimos resultados</small>
+        </div>
+
+        <div class="zona-vaso" id="zonaVaso">
+          <div class="vapor" id="vapor"></div>
+          <div class="vaso" id="vaso">
+            <div class="liquido" id="liquido">
+              <div class="capa"></div>
+              <div class="burbujas" id="burbujas"></div>
+            </div>
+            <div class="espuma"></div>
+            <div class="particulas" id="particulas"></div>
+            <div class="marcas"><span></span><span></span><span></span><span></span></div>
+          </div>
+          <div class="base-vaso"></div>
+          <p class="instruccion" id="instruccion">Arrastra dos elementos al vaso</p>
+        </div>
+
+        <div class="termometro" id="termometro">
+          <div class="termometro-tubo"><div class="mercurio" id="mercurio"></div></div>
+          <div class="termometro-bulbo"></div>
+          <span class="temperatura" id="temperatura">25.0 °C</span>
+          <small>Temperatura</small>
+        </div>
+      </div>
+
+      <div class="controles">
+        <div class="ranura" data-posicion="0">Elemento 1</div>
+        <span class="mas">+</span>
+        <div class="ranura" data-posicion="1">Elemento 2</div>
+        <button class="boton-mezclar" id="btnMezclar" disabled>Mezclar</button>
+      </div>
+
+      <div class="progreso">
+        <p id="textoProgreso">Experimentos descubiertos: 0 de 0</p>
+        <div class="barra"><div class="barra-relleno" id="barraProgreso"></div></div>
+      </div>
+    </section>
+
+    <aside class="panel elementos">
+      <h2>Elementos</h2>
+      <div class="grid-elementos" id="gridElementos">
+        <p class="cargando">Cargando elementos...</p>
+      </div>
+      <div class="resultado neutro" id="resultado">
+        <span class="resultado-etiqueta">Resultado:</span>
+        <h3>Esperando mezcla</h3>
+        <p>Arrastra dos elementos al vaso (o haz clic en ellos) y presiona Mezclar.</p>
+      </div>
+    </aside>
+
+    <section class="panel bitacora">
+      <div class="encabezado-panel">
+        <h2>Bitácora de pruebas</h2>
+        <button class="boton-secundario" id="btnLimpiar">Limpiar bitácora</button>
+      </div>
+      <div class="estadisticas">
+        <div class="estadistica"><b id="statTotal">0</b><span>Pruebas realizadas</span></div>
+        <div class="estadistica"><b id="statReacciones">0</b><span>Con resultado</span></div>
+        <div class="estadistica"><b id="statSin">0</b><span>Sin reacción</span></div>
+      </div>
+      <div class="tabla-contenedor">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Fecha y hora</th>
+              <th>Combinación</th>
+              <th>Resultado</th>
+              <th>Tipo</th>
+              <th>Temp.</th>
+            </tr>
+          </thead>
+          <tbody id="tablaBitacora">
+            <tr class="vacio"><td colspan="6">Aún no hay pruebas registradas.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel catalogo">
+      <div class="encabezado-panel">
+        <h2>Catálogo de experimentos</h2>
+        <div class="filtros">
+          <button class="filtro activo" data-filtro="todos">Todos</button>
+          <button class="filtro" data-filtro="descubierto">Hechos</button>
+          <button class="filtro" data-filtro="oculto">Ocultos</button>
+        </div>
+      </div>
+      <div class="lista-catalogo" id="listaCatalogo">
+        <p class="cargando">Cargando catálogo...</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="pie">
+    <p class="nota">Simulación educativa con fines didácticos. No reproduzcas estos experimentos fuera de un laboratorio supervisado.</p>
+  </footer>
+
+  <div class="aviso" id="aviso"></div>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>
